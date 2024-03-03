@@ -21,7 +21,7 @@ class Fase01 extends Phaser.Scene {
     }
 
     create() {
-
+        pontuacao = 0
         teclado = this.input.keyboard.createCursorKeys(); // agrega a variável um gerenciador de inputs do teclado;
 
         this.add.image(300, 300, 'bg');
@@ -93,7 +93,7 @@ class Fase01 extends Phaser.Scene {
             frameRate: 1,
             repeat: -1
         });
-        this.initialTime = 15; // Tempo inicial em segundos
+        this.initialTime = 20; // Tempo inicial em segundos
         this.timeLeft = this.initialTime;
 
         // Exibindo o tempo restante na tela
@@ -119,7 +119,6 @@ class Fase01 extends Phaser.Scene {
             // Chama a função para mudar de cena
             this.scene.stop()
             this.scene.start('gameOver')
-            console.log('deu ruim')
         }
 
     }
@@ -148,7 +147,7 @@ class Fase01 extends Phaser.Scene {
         if (pontuacao === 15) {
             this.scene.stop()
             this.scene.start('Fase02')
-            console.log('oq ta acontecendo')
+            
         }
 
     }

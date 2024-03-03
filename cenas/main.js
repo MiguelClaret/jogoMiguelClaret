@@ -12,7 +12,7 @@ var config = {
     },
 
     //defini as funções executadas no game
-    scene: [telaInicial, Fase01, Fase02, GameOver]
+    scene: [telaInicial, Fase01, Fase02, GameOver, telaWinner]
 }
 
 

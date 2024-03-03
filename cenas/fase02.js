@@ -27,11 +27,12 @@ class Fase02 extends Phaser.Scene {
         this.add.image(300, 300, 'bg');
 
         plataformas = this.physics.add.staticGroup();
-        plataformas.create(200, 150, 'grama')
-        plataformas.create(500, 250, 'grama')
-        plataformas.create(150, 350, 'grama')
+        plataformas.create(400, 150, 'grama')
+        plataformas.create(100, 250, 'grama')
+        plataformas.create(300, 350, 'grama')
+        plataformas.create(100, 450, 'grama')
         plataformas.create(500, 450, 'grama')
-        //plataformas.create(250, 100, 'grama')
+
         plataformas.create(300, 570, 'gramaG')
      
         this.cameras.main.setBounds(0, 0, 600, 600);
@@ -49,21 +50,22 @@ class Fase02 extends Phaser.Scene {
         
         doves = this.physics.add.group();
         
-        doves.create(300, 475, 'dove')
-        doves.create(450, 350, 'dove')
-        doves.create(495, 350, 'dove')
-        doves.create(550, 350, 'dove')
-        doves.create(100, 300, 'dove')
-        doves.create(145, 300, 'dove')
-        doves.create(190, 300, 'dove')
-        doves.create(450, 200, 'dove')
-        doves.create(490, 200, 'dove')
-        doves.create(530, 200, 'dove')
-        doves.create(580, 200, 'dove')
-        doves.create(120, 100, 'dove')
-        doves.create(160, 100, 'dove')
-        doves.create(200, 100, 'dove')
-        doves.create(240, 100, 'dove')
+        doves.create(50, 420, 'dove')
+        doves.create(90, 420, 'dove')
+        doves.create(130, 420, 'dove')
+        doves.create(460, 420, 'dove')
+        doves.create(500, 420, 'dove')
+        doves.create(540, 420, 'dove')
+        doves.create(580, 420, 'dove')
+        doves.create(250, 300, 'dove')
+        doves.create(350, 300, 'dove')
+        doves.create(40, 200, 'dove')
+        doves.create(80, 200, 'dove')
+        doves.create(120, 200, 'dove')
+        doves.create(160, 200, 'dove')
+        doves.create(360, 100, 'dove')
+        doves.create(420, 100, 'dove')
+      
 
         doves.children.iterate((doves) => {
             doves.body.setSize(30, 20, true);
@@ -75,7 +77,7 @@ class Fase02 extends Phaser.Scene {
         this.physics.add.overlap(player, doves.getChildren(), (player, doves) => {
             doves.disableBody(true, true); // Desativa a física e esconde a moeda
             pontuacao += 1; // Incrementa a pontuação
-            placar.setText('Doves:' + pontuacao + '/20'); // Atualiza o texto do placar
+            placar.setText('Doves:' + pontuacao + '/15'); // Atualiza o texto do placar
         });
 
 
@@ -93,7 +95,7 @@ class Fase02 extends Phaser.Scene {
             frameRate: 1,
             repeat: -1
         });
-        this.initialTime2 = 10; // Tempo inicial em segundos
+        this.initialTime2 = 15; // Tempo inicial em segundos
         this.timeLeft2 = this.initialTime2;
         
         // Exibindo o tempo restante na tela
@@ -145,7 +147,7 @@ class Fase02 extends Phaser.Scene {
 
         if(pontuacao === 15){
             this.scene.stop()
-            this.scene.start('telaInicial')
+            this.scene.start('telaWinner')
         }
 
 
