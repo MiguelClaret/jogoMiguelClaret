@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> <!--defini o idioma da pagina-->
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome do Game</title>
+    <meta charset="UTF-8"> <!-- Identificação de caracter usando no game -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Identificador de navegador usado-->
+
+    <title>GameClaret</title> <!-- Título da aba -->
 
     <style>
+        /* design em css*/
+        /* centraliza a imagem*/
         body {
             display: flex;
             justify-content: center;
@@ -15,10 +19,17 @@
             margin: 0;
         }
     </style>
+
+    <script src="phaser.js"></script> <!-- executa o phaser no site-->
 </head>
 
 <body>
-<script src="scenas/main.js"></script>
+    <script src='/cenas/telaInicial.js'></script> <!-- executa o código do game no site -->
+    <script src='/cenas/fase01.js'></script> <!-- executa o código do game no site -->
+    <script src='/cenas/fase02.js'></script> <!-- executa o código do game no site -->
+    <script src='/cenas/over.js'></script> <!-- executa o código do game no site -->
+    <script src="/cenas/main.js"></script>
+
 </body>
 
 </html>
