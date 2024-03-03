@@ -130,7 +130,7 @@ class Fase01 extends Phaser.Scene {
 
     }
     update() {
-
+    
         // configuração das ações de cada tecla de movimentação
         if (teclado.left.isDown) {
             player.setVelocityX(-200);
@@ -159,7 +159,7 @@ class Fase01 extends Phaser.Scene {
             this.scene.start('Fase02')
 
         }
-
+    
     }
 
 }
