@@ -20,5 +20,6 @@ var game = new Phaser.Game(config); // defini a variável game e "guarda" nela a
 var platforms; // variável para identificar o chão
 var player; // variável para identifcar o boneco
 var cursors; // variável para identificar o teclado
+var fase = ['Fase01', 'Fase02']
 
 

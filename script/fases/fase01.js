@@ -5,6 +5,9 @@ var teclado
 var placar
 var doves
 var pontuacao
+var i
+var situacao
+
 
 class Fase01 extends Phaser.Scene {
     constructor() {
@@ -22,6 +25,7 @@ class Fase01 extends Phaser.Scene {
     }
 
     create() {
+        i = 0
         pontuacao = 0 // zera a pontuaçao
         teclado = this.input.keyboard.createCursorKeys(); // agrega a variável um gerenciador de inputs do teclado;
 
@@ -110,6 +114,8 @@ class Fase01 extends Phaser.Scene {
             callbackScope: this,
             loop: true
         });
+
+        situacao = this.add.text(200, 16, 'Você está na ' + fase[i], { fontSize: '20px', fill: '#00000' })
 
     }
 

@@ -22,6 +22,7 @@ class Fase02 extends Phaser.Scene {
     }
 
     create() {
+        i = 1
         pontuacao = 0 // zera a pontuação
         teclado = this.input.keyboard.createCursorKeys(); // agrega a variável um gerenciador de inputs do teclado;
 
@@ -108,6 +109,8 @@ class Fase02 extends Phaser.Scene {
             callbackScope: this,
             loop: true
         });
+
+        situacao = this.add.text(200, 16, 'Você está na ' + fase[i], { fontSize: '20px', fill: '#00000' })
 
     }
     //método qual att o timer
