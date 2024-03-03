@@ -2,12 +2,12 @@ var config = {
     type: Phaser.AUTO, // defini o tipo de renderização
     width: 600, // largura da tela do game
     height: 600, // altura da tela do game
-    // ?? não sei exlpicar
+    // define a física do game
     physics: {
         default: 'arcade',
         arcade: {
             gravity: { y: 700 },
-            debug: false 
+            debug: false
         }
     },
 

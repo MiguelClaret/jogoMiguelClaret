@@ -1,10 +1,10 @@
-
+// definição de variáveis
 var plataformas
 var player
 var teclado
 var placar
 var doves
-var pontuacao = 0
+var pontuacao
 
 class Fase01 extends Phaser.Scene {
     constructor() {
@@ -12,6 +12,7 @@ class Fase01 extends Phaser.Scene {
     }
 
     preload() {
+        //carrega as imagens e sprites que serão usadas no game
         this.load.image('bg', '../assets/fundo.png')
         this.load.image('grama', '../assets/grama.png')
         this.load.image('gramaG', '../assets/gramaG.svg')
@@ -21,34 +22,33 @@ class Fase01 extends Phaser.Scene {
     }
 
     create() {
-        pontuacao = 0
+        pontuacao = 0 // zera a pontuaçao
         teclado = this.input.keyboard.createCursorKeys(); // agrega a variável um gerenciador de inputs do teclado;
 
-        this.add.image(300, 300, 'bg');
+        this.add.image(300, 300, 'bg');// add o background
 
+        // define a física das plataformas e add elas em suas posições
         plataformas = this.physics.add.staticGroup();
         plataformas.create(200, 150, 'grama')
         plataformas.create(500, 250, 'grama')
         plataformas.create(150, 350, 'grama')
         plataformas.create(500, 450, 'grama')
-        //plataformas.create(250, 100, 'grama')
         plataformas.create(300, 570, 'gramaG')
 
-        this.cameras.main.setBounds(0, 0, 600, 600);
 
-        player = this.physics.add.sprite(50, 500, 'boneco').setScale(0.15)
-        player.setBounce(0.2); // defini o fator de ressalto
+
+        player = this.physics.add.sprite(50, 500, 'boneco').setScale(0.15) //add física ao personagem
+        player.setBounce(0.2); // defini o fator de ressalto do personagem
         player.setCollideWorldBounds(true) // para ele somente ficar no mapa 
-        this.physics.add.collider(player, plataformas); // não colidir com as 
-        this.cameras.main.startFollow(player);
-        player.setSize(240, 460)
+        this.physics.add.collider(player, plataformas); // define a colisão entre o player e a plataforma
+        player.setSize(240, 460)// altera o hit box do player
 
-        player.anims.play('idle', true);
+        player.anims.play('idle', true);// inicia a animação do player parado
 
-        placar = this.add.text(445, 30, 'Doves:0/15', { fontSize: '20px', fill: '#00000' })
+        placar = this.add.text(445, 30, 'Doves:0/15', { fontSize: '20px', fill: '#00000' }) // add o placr
 
+        // define a física dos doves e add eles
         doves = this.physics.add.group();
-
         doves.create(300, 475, 'dove')
         doves.create(450, 350, 'dove')
         doves.create(495, 350, 'dove')
@@ -65,15 +65,17 @@ class Fase01 extends Phaser.Scene {
         doves.create(200, 100, 'dove')
         doves.create(240, 100, 'dove')
 
+        // altera o tamnho e o hitbox dos doves
         doves.children.iterate((doves) => {
             doves.body.setSize(30, 20, true);
             doves.setScale(0.8)
         });
-
+        // add colisão entre os doves e as plataformas
         this.physics.add.collider(doves, plataformas);
 
+        // contador de pontos
         this.physics.add.overlap(player, doves.getChildren(), (player, doves) => {
-            doves.disableBody(true, true); // Desativa a física e esconde a moeda
+            doves.disableBody(true, true); // Desativa a física e esconde o dove
             pontuacao += 1; // Incrementa a pontuação
             placar.setText('Doves:' + pontuacao + '/15'); // Atualiza o texto do placar
         });
@@ -93,12 +95,15 @@ class Fase01 extends Phaser.Scene {
             frameRate: 1,
             repeat: -1
         });
-        this.initialTime = 20; // Tempo inicial em segundos
-        this.timeLeft = this.initialTime;
+
+
+        this.initialTime = 20; // Tempo inicial em segundos do timer
+        this.timeLeft = this.initialTime; // define a variavel de tempo restante
 
         // Exibindo o tempo restante na tela
         this.timerText = this.add.text(16, 16, 'Tempo: ' + this.timeLeft, { fontSize: '20px', fill: '#00000' });
 
+        //temporizador
         this.timer = this.time.addEvent({
             delay: 1000, // Chama a função a cada 1 segundo
             callback: this.updateTimer,
@@ -107,6 +112,8 @@ class Fase01 extends Phaser.Scene {
         });
 
     }
+
+    // método qual att o timer
     updateTimer() {
         // Atualiza o tempo restante
         this.timeLeft--;
@@ -116,13 +123,15 @@ class Fase01 extends Phaser.Scene {
 
         // Verifica se o tempo acabou
         if (this.timeLeft === 0) {
-            // Chama a função para mudar de cena
+            // Chama a função para mudar de cena de game over
             this.scene.stop()
             this.scene.start('gameOver')
         }
 
     }
     update() {
+
+        // configuração das ações de cada tecla de movimentação
         if (teclado.left.isDown) {
             player.setVelocityX(-200);
             player.setFlip(false, false)
@@ -144,10 +153,11 @@ class Fase01 extends Phaser.Scene {
             player.setVelocityY(-400);
         }
 
+        // verifica se todos os doves foram coletados para mudar de fase
         if (pontuacao === 15) {
             this.scene.stop()
             this.scene.start('Fase02')
-            
+
         }
 
     }
