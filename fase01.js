@@ -16,12 +16,12 @@ class Fase01 extends Phaser.Scene {
 
     preload() {
         //carrega as imagens e sprites que serão usadas no game
-        this.load.image('bg', '../assets/fundo.png')
-        this.load.image('grama', '../assets/grama.png')
-        this.load.image('gramaG', '../assets/gramaG.svg')
-        this.load.spritesheet('boneco', '../assets/bonequinho.png', { frameWidth: 500, frameHeight: 500 });
-        this.load.spritesheet('jmp', '../assets/pulo.png', { frameWidth: 500, frameHeight: 500 });
-        this.load.image('dove', '../assets/dove.png')
+        this.load.image('bg', 'assets/fundo.png')
+        this.load.image('grama', 'assets/grama.png')
+        this.load.image('gramaG', 'assets/gramaG.svg')
+        this.load.spritesheet('boneco', 'assets/bonequinho.png', { frameWidth: 500, frameHeight: 500 });
+        this.load.spritesheet('jmp', 'assets/pulo.png', { frameWidth: 500, frameHeight: 500 });
+        this.load.image('dove', 'assets/dove.png')
     }
 
     create() {
@@ -136,7 +136,7 @@ class Fase01 extends Phaser.Scene {
 
     }
     update() {
-    
+
         // configuração das ações de cada tecla de movimentação
         if (teclado.left.isDown) {
             player.setVelocityX(-200);
@@ -165,7 +165,7 @@ class Fase01 extends Phaser.Scene {
             this.scene.start('Fase02')
 
         }
-    
+
     }
 
 }
